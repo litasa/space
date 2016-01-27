@@ -35,7 +35,7 @@ bool Skybox::SkyboxInit(
 		return false;
 	}
 	m_box = new Mesh("./models/box.obj");
-	m_shader = new Shader("./shaders/skybox");
+	m_shader = new Skybox_Shader("./shaders/skybox");
 	return true;
 
 }
@@ -51,7 +51,7 @@ void Skybox::Draw(Transform& trans, Camera& cam)
 	glDisable(GL_CULL_FACE);
 	Use(); //enable cubemap
 	m_shader->Use();
-	m_shader->Update(trans, cam);
+	m_shader->UpdateValues(trans, cam);
 	m_box->Draw();
 	glEnable(GL_CULL_FACE);
 	glEnable(GL_DEPTH_TEST);

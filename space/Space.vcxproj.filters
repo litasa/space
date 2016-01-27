@@ -15,9 +15,11 @@
     <Filter Include="Image Handeling">
       <UniqueIdentifier>{337690c4-0e87-49eb-9d95-4120d185baa3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    <Filter Include="Different Shaders">
+      <UniqueIdentifier>{05ff7eac-7862-48fc-9402-61bc6d1deddd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Different Shaders\Basic">
+      <UniqueIdentifier>{09ff26a3-63e4-45bc-97db-df0236e3502d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -50,6 +52,15 @@
     </ClCompile>
     <ClCompile Include="Skybox.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Phong_Shader.cpp">
+      <Filter>Different Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Skybox_Shader.cpp">
+      <Filter>Different Shaders</Filter>
+    </ClCompile>
+    <ClCompile Include="Basic_Shader.cpp">
+      <Filter>Different Shaders\Basic</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -85,6 +96,15 @@
     </ClInclude>
     <ClInclude Include="Skybox.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Phong_Shader.h">
+      <Filter>Different Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Skybox_Shader.h">
+      <Filter>Different Shaders</Filter>
+    </ClInclude>
+    <ClInclude Include="Basic_Shader.h">
+      <Filter>Different Shaders\Basic</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

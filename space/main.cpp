@@ -2,7 +2,7 @@
 #include <GL\glew.h>
 #include <GL\freeglut.h>
 #include "Display.h"
-#include "Shader.h"
+#include "Basic_Shader.h"
 #include "Mesh.h"
 #include "Texture.h"
 #include "Transform.h"
@@ -19,7 +19,7 @@ int main(int argc, char ** argv[])
 {
 
 	Display display(800, 600, "TSBK07 Space");
-	Shader shader("./shaders/space");
+	Basic_Shader shader("./shaders/space");
 	// skyShader("./shaders/cube");
 	Texture texture("./textures/dirt.tga");
 	Camera camera(glm::vec3(0, 0, 0), 70.0f, display.GetAspectRation(), 0.01f, 1000.0f);
@@ -62,7 +62,7 @@ int main(int argc, char ** argv[])
 		sky.Draw(transform, camera);
 
 		shader.Use();
-		shader.Update(transform, camera);
+		shader.UpdateValues(transform, camera);
 		
 		texture.Use();
 		monkey.Draw();

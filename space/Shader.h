@@ -1,38 +1,48 @@
 #pragma once
-#ifndef SHADER_H
-#define SHADER_H
-#include <Windows.h>
+#include <map>
 #include <string>
-#include <GL\glew.h>
-#include <GL\freeglut.h>
+#include "GL\glew.h"
 #include "Transform.h"
 #include "Camera.h"
 
 class Shader
 {
 public:
-	Shader(const std::string& fileName);
-	~Shader();
+	Shader();
+	virtual ~Shader() = 0;
 
+	virtual void UpdateValues(const Transform & transform, const Camera & camera);
+
+	void LoadFromString(GLenum type, const std::string& source);
+
+	void CreateAndLinkProgram();
 	void Use();
-	void Update(const Transform& transform, const Camera& camera);
+	void UnUse();
+	void AddAttribute(const std::string& attribute);
+	void AddUniform(const std::string& uniform);
+	GLuint getProgram() const;
 
-private:
-	static const unsigned int NUM_SHADERS = 2;
-	Shader(const Shader& other) {}
+	GLuint operator[](const std::string& attribute);
+	GLuint operator()(const std::string& uniform);
+	void DeleteShaderProgram();
 
-	enum
-	{
-		MODEL_U,
-		VIEW_U,
-		PROJECTION_U,
-		CUBEMAP_U,
+	void LoadFromFile(GLenum whichShader, const std::string& fileName);
+protected:
+	void PrintError(GLuint programOrShader);
 
-		NUM_UNIFORMS
+	enum ShaderType {
+		VERTEX_SHADER, FRAGMENT_SHADER, GEOMETRY_SHADER
 	};
-
 	GLuint m_program;
-	GLuint m_shaders[NUM_SHADERS];
-	GLuint m_uniforms[NUM_UNIFORMS];
+	int m_totalShaders;
+	GLuint m_shaders[3];
+	std::map<std::string, GLuint> m_attributeList;
+	std::map<std::string, GLuint> m_uniformLocationList;
+
+	GLuint UnifLoc(const std::string& uniform);
+	GLuint AttrList(const std::string& attrib);
+private:
+
+
 };
-#endif //SHADER_H
+

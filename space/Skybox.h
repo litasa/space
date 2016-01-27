@@ -5,7 +5,7 @@
 #include <string>
 #include "Texture.h"
 #include "Mesh.h"
-#include "Shader.h"
+#include "Skybox_Shader.h"
 
 class Skybox : public Mesh
 {
