@@ -18,8 +18,8 @@
 
 int main(int argc, char ** argv[])
 {
-
 	Display display(800, 600, "TSBK07 Space");
+	std::cout << "init initialized" << std::endl;
 	Basic_Shader base_shader("./shaders/space");
 	Phong_Shader phong("./shaders/phong");
 	Texture texture("./textures/dirt.tga");
@@ -35,7 +35,7 @@ int main(int argc, char ** argv[])
 	Mesh monkey("./models/monkey3.obj");
 	Mesh box("./models/box.obj");
 
-	std::cout << "init complete" << std::endl;
+	std::cout << "init completed" << std::endl;
 
 
 	while (!display.IsClosed())
