@@ -54,11 +54,14 @@ int main(int argc, char ** argv[])
 			{
 				mouse.HandleEvent(e, camera);
 			}
+			if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP)
+			{
+				keyboard.RegisterEvents(e.key);
+			}
 		}
 
-		const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
 
-		keyboard.HandleEvent(currentKeyStates, camera);
+		keyboard.ExecuteEvents(camera);
 		
 		sky.Draw(transform, camera);
 

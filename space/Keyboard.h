@@ -5,13 +5,15 @@
 #include <SDL_events.h>
 #include "glm\glm.hpp"
 #include "Camera.h"
+#include <unordered_map>
 
 class Keyboard
 {
 public:
 	Keyboard() { m_speed = 0.01f; }
 
-	void HandleEvent(const Uint8* keyState, Camera& camera);
+	void RegisterEvents(SDL_KeyboardEvent& e);
+	void ExecuteEvents(Camera& camera);
 
 	~Keyboard();
 
@@ -24,5 +26,6 @@ private:
 	void X_KeyUsed(Camera& camera);
 
 	float m_speed;
+	std::vector<SDL_Scancode> keys_down;
 };
 #endif //KEYBOARD_H

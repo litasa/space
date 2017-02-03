@@ -2,38 +2,71 @@
 #include <iostream>
 
 
-void Keyboard::HandleEvent(const Uint8* keyState, Camera& camera)
+void Keyboard::RegisterEvents(SDL_KeyboardEvent& e)
 {
+	if (e.type == SDL_KEYDOWN)
+	{
+		auto it = std::find(keys_down.begin(), keys_down.end(), e.keysym.scancode);
+		if (it == keys_down.end())
+		{
+			keys_down.push_back(e.keysym.scancode);
+		}
+	}
+	if (e.type == SDL_KEYUP)
+	{
+		auto it = std::find(keys_down.begin(), keys_down.end(), e.keysym.scancode);
+		if (it != keys_down.end())
+		{
+			keys_down.erase(it);
+		}
+	}
+}
 
-	if (keyState[SDL_SCANCODE_W])
+void Keyboard::ExecuteEvents(Camera& camera)
+{
+	for (size_t i = 0; i < keys_down.size(); ++i)
 	{
-		W_KeyUsed(camera);
+		switch (keys_down[i])
+		{
+		case SDL_SCANCODE_W:
+		{
+			W_KeyUsed(camera);
+			break;
+		}
+		case SDL_SCANCODE_A:
+		{
+			A_KeyUsed(camera);
+			break;
+		}
+		case SDL_SCANCODE_S:
+		{
+			S_KeyUsed(camera);
+			break;
+		}
+		case SDL_SCANCODE_D:
+		{
+			D_KeyUsed(camera);
+			break;
+		}
+		case SDL_SCANCODE_L:
+		{
+			std::cout << "x: " << camera.GetUp().x << "y: " << camera.GetUp().y << "z: " << camera.GetUp().z << std::endl;
+			break;
+		}
+		case SDL_SCANCODE_Z:
+		{
+			Z_KeyUsed(camera);
+			break;
+		}
+		case SDL_SCANCODE_X:
+		{
+			X_KeyUsed(camera);
+			break;
+		}
+		default:
+			break;
+		}
 	}
-	if (keyState[SDL_SCANCODE_A])
-	{
-		A_KeyUsed(camera);
-	}
-	if (keyState[SDL_SCANCODE_S])
-	{
-		S_KeyUsed(camera);
-	}
-	if (keyState[SDL_SCANCODE_D])
-	{
-		D_KeyUsed(camera);
-	}
-	if (keyState[SDL_SCANCODE_L])
-	{
-		std::cout << "x: " << camera.GetUp().x << "y: " << camera.GetUp().y << "z: " << camera.GetUp().z << std::endl;
-	}
-	if (keyState[SDL_SCANCODE_Z])
-	{
-		Z_KeyUsed(camera);
-	}
-	if (keyState[SDL_SCANCODE_X])
-	{
-		X_KeyUsed(camera);
-	}
-
 }
 
 void Keyboard::A_KeyUsed(Camera& camera)
