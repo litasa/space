@@ -59,7 +59,10 @@ int main(int argc, char ** argv[])
 				keyboard.RegisterEvents(e.key);
 			}
 		}
-
+		if (keyboard.IsPressed(SDL_SCANCODE_ESCAPE))
+		{
+			display.Quit();
+		}
 
 		keyboard.ExecuteEvents(camera);
 		

@@ -15,6 +15,8 @@ public:
 	void RegisterEvents(SDL_KeyboardEvent& e);
 	void ExecuteEvents(Camera& camera);
 
+	bool IsPressed(SDL_Keycode code);
+
 	~Keyboard();
 
 private:

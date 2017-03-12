@@ -69,6 +69,11 @@ void Keyboard::ExecuteEvents(Camera& camera)
 	}
 }
 
+bool Keyboard::IsPressed(SDL_Keycode code)
+{
+	return std::find(keys_down.begin(),keys_down.end(),code) != keys_down.end();
+}
+
 void Keyboard::A_KeyUsed(Camera& camera)
 {
 	camera.Move(camera.GetLeft(), m_speed);

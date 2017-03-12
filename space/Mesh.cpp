@@ -61,6 +61,16 @@ void Mesh::Draw()
 	glBindVertexArray(0);
 }
 
+void Mesh::Draw() const
+{
+	glBindVertexArray(m_vertexArrayObject);
+
+	glDrawElements(GL_TRIANGLES, m_drawCount, GL_UNSIGNED_INT, 0);
+	//glDrawArrays(GL_TRIANGLES, 0, m_drawCount);
+
+	glBindVertexArray(0);
+}
+
 void Mesh::InitMesh(const IndexedModel& model)
 {
 	m_drawCount = model.indices.size();
